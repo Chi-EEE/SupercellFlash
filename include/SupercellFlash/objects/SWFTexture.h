@@ -68,13 +68,13 @@ namespace sc
 		/// <summary>
 		/// Groups image data to blocks 32x32
 		/// </summary>
-		/// <param name="inout_data">Image data</param>
+		/// <param name="input_data">Image data</param>
 		/// <param name="output_data">Output Image data. Size if buffer must be the same as input</param>
 		/// <param name="width"></param>
 		/// <param name="height"></param>
 		/// <param name="type">Pixel type</param>
 		/// <param name="is_raw">If true, converts image to block. Otherwise converts blocks to image</param>
-		static void make_linear_data(uint8_t* inout_data, uint8_t* output_data, uint16_t width, uint16_t height, PixelFormat type, bool is_raw);
+		static void make_linear_data(uint8_t* input_data, uint8_t* output_data, uint16_t width, uint16_t height, PixelFormat type, bool is_raw);
 
 	public:
 		void load_from_image(RawImage& image);

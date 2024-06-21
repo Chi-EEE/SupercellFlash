@@ -368,7 +368,7 @@ namespace sc
 		m_image = CreateRef<KhronosTexture>(data);
 	}
 
-	void SWFTexture::make_linear_data(uint8_t* inout_data, uint8_t* output_data, uint16_t width, uint16_t height, PixelFormat type, bool is_raw) {
+	void SWFTexture::make_linear_data(uint8_t* input_data, uint8_t* output_data, uint16_t width, uint16_t height, PixelFormat type, bool is_raw) {
 		uint8_t pixel_size = Image::PixelDepthTable[(uint8_t)pixel_depth_table[(uint8_t)type]].byte_count;
 
 		const uint16_t x_blocks = static_cast<uint16_t>(floor(width / SWFTEXTURE_BLOCK_SIZE));
@@ -394,14 +394,14 @@ namespace sc
 						if (!is_raw) { // blocks to image
 							uint32_t block_target = pixel_index * pixel_size;
 
-							memcopy<uint8_t>(inout_data + block_target, output_data + target, pixel_size);
+							memcopy<uint8_t>(input_data + block_target, output_data + target, pixel_size);
 						}
 						else { // image to blocks
 							uint32_t block_pixel_x = pixel_index % width;
 							uint32_t block_pixel_y = static_cast<uint32_t>(pixel_index / width);
 							uint32_t block_target = (block_pixel_y * width + block_pixel_x) * pixel_size;
 
-							memcopy<uint8_t>(output_data + block_target, inout_data + target, pixel_size);
+							memcopy<uint8_t>(output_data + block_target, input_data + target, pixel_size);
 						}
 
 						pixel_index++;

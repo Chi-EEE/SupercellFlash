@@ -47,9 +47,9 @@ namespace sc
 		stream.clear();
 	}
 
-	bool SupercellSWF::load_internal(const fs::path& filepath, bool is_texture)
+	bool SupercellSWF::load_internal(const fs::path& filePath, bool is_texture)
 	{
-		stream.open_file(filepath);
+		stream.open_file(filePath);
 
 		// Reading .sc file
 		if (!is_texture)
@@ -237,19 +237,19 @@ namespace sc
 #pragma endregion
 
 #pragma region Saving
-	void SupercellSWF::save(const fs::path& filepath, sc::ScCompression::Signature signature)
+	void SupercellSWF::save(const fs::path& filePath, sc::ScCompression::Signature signature)
 	{
-		current_file = filepath;
+		current_file = filePath;
 		if (matrixBanks.size() == 0) {
 			matrixBanks.resize(1);
 		}
 
 		save_internal(false, false);
-		stream.save_file(filepath, signature);
+		stream.save_file(filePath, signature);
 
 		if (use_external_texture) {
-			fs::path basename = filepath.stem();
-			fs::path dirname = filepath.parent_path();
+			fs::path basename = filePath.stem();
+			fs::path dirname = filePath.parent_path();
 
 			fs::path multi_resolution_path = dirname / fs::path(basename).concat(multi_resolution_suffix.string()).concat("_tex.sc");
 			fs::path low_resolution_path = dirname / fs::path(basename).concat(low_resolution_suffix.string()).concat("_tex.sc");

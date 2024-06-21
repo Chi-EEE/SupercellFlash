@@ -40,9 +40,9 @@ namespace sc
 
 	public:
 		virtual void load(const std::filesystem::path& filePath);
-		bool load_internal(const std::filesystem::path& filepath, bool is_texture);
+		bool load_internal(const std::filesystem::path& filePath, bool is_texture);
 
-		virtual void save(const fs::path& filepath, SWFStream::Signature signature);
+		virtual void save(const fs::path& filePath, SWFStream::Signature signature);
 		void save_internal(bool is_texture, bool is_lowres);
 
 		SWFStream stream;
