@@ -39,10 +39,10 @@ namespace sc
 		SWFVector<MovieClipModifier> movieclip_modifiers;
 
 	public:
-		virtual void load(const std::filesystem::path& filePath);
+		void load(const std::filesystem::path& filePath);
 		bool load_internal(const std::filesystem::path& filePath, bool is_texture);
 
-		virtual void save(const std::filesystem::path& filePath, SWFStream::Signature signature);
+		void save(const std::filesystem::path& filePath, SWFStream::Signature signature);
 		void save_internal(bool is_texture, bool is_lowres);
 
 		SWFStream stream;
