@@ -12,5 +12,5 @@ target("supercell_flash")
     add_packages("supercell_compression", "supercell_core")
 
     add_files("source/**.cpp")
-    add_headerfiles("include/(**.h)")
+    add_headerfiles("include/(**.h)", "include/(**.hpp)")
     add_includedirs("include")
