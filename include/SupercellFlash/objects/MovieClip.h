@@ -51,7 +51,7 @@ namespace sc
 	{
 	public:
 		MovieClip() {};
-		virtual ~MovieClip() = default;
+		~MovieClip() = default;
 
 	public:
 		SWFVector<MovieClipFrameElement, uint32_t> frame_elements;
@@ -73,11 +73,11 @@ namespace sc
 		bool unknown_flag = false;
 
 	public:
-		virtual void load(SupercellSWF& swf, uint8_t tag);
-		virtual void save(SupercellSWF& swf) const;
+		void load(SupercellSWF& swf, uint8_t tag);
+		void save(SupercellSWF& swf) const;
 
-		virtual uint8_t tag(SupercellSWF& swf) const;
+		uint8_t tag(SupercellSWF& swf) const;
 
-		virtual bool is_movieclip() const;
+		bool is_movieclip() const;
 	};
 }

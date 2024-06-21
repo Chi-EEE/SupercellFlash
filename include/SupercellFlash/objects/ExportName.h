@@ -7,7 +7,7 @@ namespace sc {
 	struct ExportName
 	{
 		ExportName() {};
-		virtual ~ExportName() = default;
+		~ExportName() = default;
 
 		SWFString name;
 		uint16_t id;

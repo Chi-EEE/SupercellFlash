@@ -13,7 +13,7 @@ namespace sc
 	{
 	public:
 		Shape() {};
-		virtual ~Shape() = default;
+		~Shape() = default;
 
 	public:
 		SWFVector<ShapeDrawBitmapCommand> commands;
@@ -22,8 +22,8 @@ namespace sc
 		void load(SupercellSWF& swf, uint8_t tag);
 		void save(SupercellSWF& swf) const;
 
-		virtual uint8_t tag(SupercellSWF& swf) const;
+		uint8_t tag(SupercellSWF& swf) const;
 
-		virtual bool is_shape() const;
+		bool is_shape() const;
 	};
 }

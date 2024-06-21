@@ -24,7 +24,7 @@ namespace sc
 	{
 	public:
 		SupercellSWF() {};
-		virtual ~SupercellSWF() = default;
+		~SupercellSWF() = default;
 
 	public:
 		std::filesystem::path current_file;

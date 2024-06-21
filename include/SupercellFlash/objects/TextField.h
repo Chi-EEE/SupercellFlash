@@ -12,7 +12,7 @@ namespace sc
 	{
 	public:
 		TextField() {};
-		virtual ~TextField() = default;
+		~TextField() = default;
 
 	public:
 		enum class Align : uint8_t
@@ -60,12 +60,12 @@ namespace sc
 		SWFString typography_file = "";
 
 	public:
-		virtual void load(SupercellSWF& swf, uint8_t tag);
-		virtual void save(SupercellSWF& swf) const;
-		virtual void save_data(SupercellSWF& swf, uint8_t tag) const;
+		void load(SupercellSWF& swf, uint8_t tag);
+		void save(SupercellSWF& swf) const;
+		void save_data(SupercellSWF& swf, uint8_t tag) const;
 
-		virtual uint8_t tag(SupercellSWF& swf) const;
+		uint8_t tag(SupercellSWF& swf) const;
 
-		virtual bool is_textfield() const;
+		bool is_textfield() const;
 	};
 }

@@ -21,7 +21,7 @@ namespace sc
 	{
 	public:
 		SWFTexture() {};
-		virtual ~SWFTexture() = default;
+		~SWFTexture() = default;
 
 	public:
 		enum class Filter : uint8_t
@@ -92,9 +92,9 @@ namespace sc
 		bool downscaling = true;
 
 	public:
-		virtual void load(SupercellSWF& swf, uint8_t tag, bool use_external_texture);
-		virtual void save(SupercellSWF& swf, bool has_data, bool is_lowres) const;
-		virtual void save_buffer(Stream& stream, bool is_lowres) const;
-		virtual uint8_t tag(SupercellSWF& swf, bool has_data = false) const;
+		void load(SupercellSWF& swf, uint8_t tag, bool use_external_texture);
+		void save(SupercellSWF& swf, bool has_data, bool is_lowres) const;
+		void save_buffer(Stream& stream, bool is_lowres) const;
+		uint8_t tag(SupercellSWF& swf, bool has_data = false) const;
 	};
 }
