@@ -7,34 +7,32 @@
 #include "SupercellFlash/Tags.h"
 #include <cmath>
 
-namespace fs = std::filesystem;
-
 namespace sc
 {
 #pragma region Loading
-	void SupercellSWF::load(const fs::path& filepath)
+	void SupercellSWF::load(const std::filesystem::path& filepath)
 	{
 		current_file = filepath;
 		use_external_texture = load_internal(filepath, false);
 
 		if (use_external_texture)
 		{
-			fs::path basename = filepath.stem();
-			fs::path dirname = filepath.parent_path();
+			std::filesystem::path basename = filepath.stem();
+			std::filesystem::path dirname = filepath.parent_path();
 
-			fs::path multi_resolution_path = dirname / fs::path(basename).concat(multi_resolution_suffix.string()).concat("_tex.sc");
-			fs::path low_resolution_path = dirname / fs::path(basename).concat(low_resolution_suffix.string()).concat("_tex.sc");
-			fs::path common_file_path = dirname / fs::path(basename).concat("_tex.sc");
+			std::filesystem::path multi_resolution_path = dirname / std::filesystem::path(basename).concat(multi_resolution_suffix.string()).concat("_tex.sc");
+			std::filesystem::path low_resolution_path = dirname / std::filesystem::path(basename).concat(low_resolution_suffix.string()).concat("_tex.sc");
+			std::filesystem::path common_file_path = dirname / std::filesystem::path(basename).concat("_tex.sc");
 
-			if (low_memory_usage_mode && use_low_resolution && fs::exists(low_resolution_path))
+			if (low_memory_usage_mode && use_low_resolution && std::filesystem::exists(low_resolution_path))
 			{
 				load_internal(low_resolution_path, true);
 			}
-			else if (use_multi_resolution && fs::exists(multi_resolution_path))
+			else if (use_multi_resolution && std::filesystem::exists(multi_resolution_path))
 			{
 				load_internal(multi_resolution_path, true);
 			}
-			else if (fs::exists(common_file_path))
+			else if (std::filesystem::exists(common_file_path))
 			{
 				load_internal(common_file_path, true);
 			}
@@ -47,7 +45,7 @@ namespace sc
 		stream.clear();
 	}
 
-	bool SupercellSWF::load_internal(const fs::path& filePath, bool is_texture)
+	bool SupercellSWF::load_internal(const std::filesystem::path& filePath, bool is_texture)
 	{
 		stream.open_file(filePath);
 
@@ -237,7 +235,7 @@ namespace sc
 #pragma endregion
 
 #pragma region Saving
-	void SupercellSWF::save(const fs::path& filePath, sc::ScCompression::Signature signature)
+	void SupercellSWF::save(const std::filesystem::path& filePath, sc::ScCompression::Signature signature)
 	{
 		current_file = filePath;
 		if (matrixBanks.size() == 0) {
@@ -248,12 +246,12 @@ namespace sc
 		stream.save_file(filePath, signature);
 
 		if (use_external_texture) {
-			fs::path basename = filePath.stem();
-			fs::path dirname = filePath.parent_path();
+			std::filesystem::path basename = filePath.stem();
+			std::filesystem::path dirname = filePath.parent_path();
 
-			fs::path multi_resolution_path = dirname / fs::path(basename).concat(multi_resolution_suffix.string()).concat("_tex.sc");
-			fs::path low_resolution_path = dirname / fs::path(basename).concat(low_resolution_suffix.string()).concat("_tex.sc");
-			fs::path common_file_path = dirname / fs::path(basename).concat("_tex.sc");
+			std::filesystem::path multi_resolution_path = dirname / std::filesystem::path(basename).concat(multi_resolution_suffix.string()).concat("_tex.sc");
+			std::filesystem::path low_resolution_path = dirname / std::filesystem::path(basename).concat(low_resolution_suffix.string()).concat("_tex.sc");
+			std::filesystem::path common_file_path = dirname / std::filesystem::path(basename).concat("_tex.sc");
 
 			save_internal(true, false);
 			stream.save_file(use_multi_resolution ? multi_resolution_path : common_file_path, signature);
@@ -401,7 +399,7 @@ namespace sc
 				texture.encoding(SWFTexture::TextureEncoding::KhronosTexture);
 
 				// Path String In Tag
-				fs::path output_filepath = current_file.parent_path();
+				std::filesystem::path output_filepath = current_file.parent_path();
 				output_filepath /= current_file.stem();
 				if (is_lowres)
 				{

@@ -9,8 +9,6 @@
 using namespace std;
 using namespace std::chrono;
 
-namespace fs = std::filesystem;
-
 #define print(text) std::cout << text << std::endl;
 
 int main(int argc, char* argv[])
@@ -24,13 +22,13 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	fs::path input_path = argv[2];
-	if (!fs::exists(input_path)) {
+	std::filesystem::path input_path = argv[2];
+	if (!std::filesystem::exists(input_path)) {
 		cout << "Path is inncorrect or does not exist";
 		return 1;
 	}
 
-	fs::path basename = input_path.stem();
+	std::filesystem::path basename = input_path.stem();
 
 	std::string operation = argv[1];
 
@@ -52,7 +50,7 @@ int main(int argc, char* argv[])
 	{
 		if (operation == "decode")
 		{
-			if (fs::is_directory(input_path))
+			if (std::filesystem::is_directory(input_path))
 			{
 				print("Input path is a directory! Failed to load file");
 				return 1;
@@ -60,23 +58,23 @@ int main(int argc, char* argv[])
 
 			sc::SWFFile file(input_path);
 
-			fs::path output_directory = input_path.replace_extension();
-			if (!fs::is_directory(output_directory))
+			std::filesystem::path output_directory = input_path.replace_extension();
+			if (!std::filesystem::is_directory(output_directory))
 			{
-				fs::create_directory(output_directory);
+				std::filesystem::create_directory(output_directory);
 			}
 
 			file.save_textures_to_folder(output_directory);
 		}
 		else if (operation == "encode")
 		{
-			fs::path dl_file_path;
+			std::filesystem::path dl_file_path;
 			if (argc >= 4)
 			{
 				dl_file_path = argv[3];
 			}
 
-			if (!fs::is_directory(input_path))
+			if (!std::filesystem::is_directory(input_path))
 			{
 				print("Input path is not a directory! Failed to load file content");
 				return 1;
@@ -84,14 +82,14 @@ int main(int argc, char* argv[])
 
 			sc::SWFFile file;
 			file.use_external_texture_files = use_external_files;
-			bool is_dl_file = !dl_file_path.empty() && fs::exists(dl_file_path);
+			bool is_dl_file = !dl_file_path.empty() && std::filesystem::exists(dl_file_path);
 			if (is_dl_file)
 			{
 				file.load(dl_file_path);
 			}
 
 			file.load_textures_from_folder(input_path);
-			fs::path output_path = fs::path(input_path.parent_path() / fs::path(basename.concat(".sc")));
+			std::filesystem::path output_path = std::filesystem::path(input_path.parent_path() / std::filesystem::path(basename.concat(".sc")));
 			if (is_dl_file)
 			{
 				file.save(output_path, sc::SWFStream::Signature::Zstandard);

@@ -25,7 +25,7 @@ namespace sc
 		{
 			clear();
 
-			if (!fs::exists(path))
+			if (!std::filesystem::exists(path))
 			{
 				throw FileExistException(path);
 			}

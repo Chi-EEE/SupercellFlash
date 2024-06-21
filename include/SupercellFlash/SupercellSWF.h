@@ -27,7 +27,7 @@ namespace sc
 		virtual ~SupercellSWF() = default;
 
 	public:
-		fs::path current_file;
+		std::filesystem::path current_file;
 
 		SWFVector<ExportName> exports;
 		SWFVector<MatrixBank> matrixBanks;
@@ -42,7 +42,7 @@ namespace sc
 		virtual void load(const std::filesystem::path& filePath);
 		bool load_internal(const std::filesystem::path& filePath, bool is_texture);
 
-		virtual void save(const fs::path& filePath, SWFStream::Signature signature);
+		virtual void save(const std::filesystem::path& filePath, SWFStream::Signature signature);
 		void save_internal(bool is_texture, bool is_lowres);
 
 		SWFStream stream;

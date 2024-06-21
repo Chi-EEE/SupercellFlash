@@ -169,8 +169,8 @@ namespace sc
 
 		if (!external_texture_path.empty())
 		{
-			InputFileStream texture_file(fs::path(
-				swf.current_file.parent_path() / fs::path(external_texture_path.data())
+			InputFileStream texture_file(std::filesystem::path(
+				swf.current_file.parent_path() / std::filesystem::path(external_texture_path.data())
 			));
 
 			BufferStream texture_data;

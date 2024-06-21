@@ -8,8 +8,6 @@
 using namespace std;
 using namespace std::chrono;
 
-namespace fs = std::filesystem;
-
 int main(int argc, char* argv[])
 {
 	sc::SupercellSWF swf1;
@@ -22,8 +20,8 @@ int main(int argc, char* argv[])
 		return 1;
 	}
 
-	fs::path filepath = argv[1];
-	if (!fs::exists(filepath)) {
+	std::filesystem::path filepath = argv[1];
+	if (!std::filesystem::exists(filepath)) {
 		cout << "File not found";
 		return 1;
 	}
@@ -39,7 +37,7 @@ int main(int argc, char* argv[])
 	/* Save test */
 	chrono::time_point saving_start = high_resolution_clock::now();
 
-	fs::path folder = filepath.parent_path();
+	std::filesystem::path folder = filepath.parent_path();
 	try {
 		swf.save(folder / filepath.stem().concat("_new").concat(filepath.extension().string()), sc::SWFStream::Signature::Zstandard);
 	}
@@ -61,9 +59,9 @@ int main(int argc, char* argv[])
 //
 //int main(int, char* argv[])
 //{
-//	fs::path active_folder = argv[1];
+//	std::filesystem::path active_folder = argv[1];
 //
-//	for (fs::path file : fs::directory_iterator(active_folder))
+//	for (std::filesystem::path file : std::filesystem::directory_iterator(active_folder))
 //	{
 //		if (!(file.extension() == ".sc"))
 //		{
