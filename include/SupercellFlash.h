@@ -1,5 +1,7 @@
 #pragma once
 
+#include "SupercellFlash/parse.h"
+
 #include "SupercellFlash/SupercellSWF.h"
 #include "SupercellFlash/objects/ExportName.h"
 #include "SupercellFlash/objects/MovieClip.h"

@@ -4,28 +4,23 @@
 #include <filesystem>
 
 #include "types/SWFStream.hpp"
+#include "types/SWFContainer.hpp"
 
-// SWF Objects
 #include "objects/ExportName.h"
-#include "objects/MatrixBank.h"
-
-#include "objects/SWFTexture.h"
-#include "objects/Shape.h"
-#include "objects/MovieClip.h"
-#include "objects/TextField.h"
-#include "objects/MovieClipModifier.h"
 
 #define MULTIRES_DEFAULT_SUFFIX "_highres"
 #define LOWRES_DEFAULT_SUFFIX "_lowres"
 
 namespace sc
 {
-	class SupercellSWF
+	class Shape;
+	class MovieClip;
+	class TextField;
+	class MovieClipModifier;
+	class MatrixBank;
+	class SWFTexture;
+	struct SupercellSWF
 	{
-	public:
-		SupercellSWF() {};
-		~SupercellSWF() = default;
-
 	public:
 		std::filesystem::path current_file;
 
@@ -38,22 +33,8 @@ namespace sc
 		SWFVector<TextField> textfields;
 		SWFVector<MovieClipModifier> movieclip_modifiers;
 
-	public:
-		void load(const std::filesystem::path& filePath);
-		bool load_internal(const std::filesystem::path& filePath, bool is_texture);
-
-		void save(const std::filesystem::path& filePath, SWFStream::Signature signature);
-		void save_internal(bool is_texture, bool is_lowres);
-
 		SWFStream stream;
 
-	protected:
-		bool load_tags();
-
-		void save_tags();
-		void save_textures(bool has_data, bool is_lowres);
-
-	public:
 		// Saves all textures to _tex.sc if true
 		bool use_external_texture = false;
 		bool use_multi_resolution = false;

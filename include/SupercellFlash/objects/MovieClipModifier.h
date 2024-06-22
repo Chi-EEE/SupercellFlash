@@ -2,17 +2,17 @@
 
 #include <stdint.h>
 
+#include "SupercellFlash/SupercellSWF.h"
+
 #include "SupercellFlash/objects/DisplayObject.h"
 #include "SupercellFlash/Tags.h"
 
 namespace sc
 {
-	class SupercellSWF;
-
 	class MovieClipModifier : public DisplayObject
 	{
 	public:
-		MovieClipModifier() {};
+		MovieClipModifier() = default;
 		~MovieClipModifier() = default;
 
 	public:
@@ -27,11 +27,21 @@ namespace sc
 		Type type = Type::Mask;
 
 	public:
-		void load(SupercellSWF& swf, uint8_t tag);
-		void save(SupercellSWF& swf) const;
+		void load(SupercellSWF& swf, uint8_t tag) {
+			id = swf.stream.read_unsigned_short();
+			type = (Type)tag;
+		}
 
-		uint8_t tag(SupercellSWF& swf) const;
+		void save(SupercellSWF& swf) const {
+			swf.stream.write_unsigned_short(id);
+		}
 
-		bool is_modifier() const;
+		uint8_t tag(SupercellSWF& swf) const {
+			return (uint8_t)type;
+		}
+
+		bool is_modifier() const {
+			return true;
+		}
 	};
 }

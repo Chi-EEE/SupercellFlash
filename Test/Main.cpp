@@ -28,8 +28,7 @@ int main(int argc, char* argv[])
 
 	/* Loading test */
 	time_point loading_start = high_resolution_clock::now();
-	sc::SupercellSWF swf;
-	swf.load(filepath);
+	sc::SupercellSWF swf = sc::load(filepath);
 
 	cout << "Loading took: ";
 	cout << sc::time::calculate_time(loading_start) << endl << endl;
@@ -39,7 +38,7 @@ int main(int argc, char* argv[])
 
 	std::filesystem::path folder = filepath.parent_path();
 	try {
-		swf.save(folder / filepath.stem().concat("_new").concat(filepath.extension().string()), sc::SWFStream::Signature::Zstandard);
+		sc::save(swf, folder / filepath.stem().concat("_new").concat(filepath.extension().string()), sc::SWFStream::Signature::Zstandard);
 	}
 	catch (const sc::GeneralRuntimeException& err) {
 		cout << "Error. " << endl << "Message: " << err.what() << endl;

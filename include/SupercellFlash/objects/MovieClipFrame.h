@@ -1,12 +1,13 @@
 #pragma once
 
 #include <stdint.h>
+
+#include "SupercellFlash/SupercellSWF.h"
+
 #include "SupercellFlash/types/SWFString.hpp"
 
 namespace sc
 {
-	class SupercellSWF;
-
 	struct MovieClipFrame
 	{
 	public:
@@ -18,9 +19,17 @@ namespace sc
 		SWFString label;
 
 	public:
-		void load(SupercellSWF& swf);
-		void save(SupercellSWF& swf) const;
+		void load(SupercellSWF& swf) {
+			elements_count = swf.stream.read_unsigned_short();
+			swf.stream.read_string(label);
+		}
+		void save(SupercellSWF& swf) const {
+			swf.stream.write_unsigned_short(elements_count);
+			swf.stream.write_string(label);
+		}
 
-		uint8_t tag(SupercellSWF& swf) const;
+		uint8_t tag(SupercellSWF& swf) const {
+			return TAG_MOVIE_CLIP_FRAME_2;
+		};
 	};
 }

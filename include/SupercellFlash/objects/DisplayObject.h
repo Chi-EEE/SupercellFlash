@@ -2,10 +2,10 @@
 
 #include <stdint.h>
 
+#include "SupercellFlash/SupercellSWF.h"
+
 namespace sc
 {
-	class SupercellSWF;
-
 	class DisplayObject
 	{
 	public:
