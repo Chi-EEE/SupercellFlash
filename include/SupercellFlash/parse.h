@@ -14,15 +14,15 @@
 #include "objects/MatrixBank.h"
 
 namespace sc {
-	SupercellSWF load(const std::filesystem::path& filePath);
-	bool load_internal(SupercellSWF& swf, const std::filesystem::path& filePath, bool is_texture);
-	void save(SupercellSWF& swf, const std::filesystem::path& filePath, SWFStream::Signature signature);
-	void save_internal(SupercellSWF& swf, bool is_texture, bool is_lowres);
-	bool _load_tags(SupercellSWF& swf);
-	void _save_tags(SupercellSWF& swf);
-	void _save_textures(SupercellSWF& swf, bool has_data, bool is_lowres);
+	inline SupercellSWF load(const std::filesystem::path& filePath);
+	inline bool load_internal(SupercellSWF& swf, const std::filesystem::path& filePath, bool is_texture);
+	inline void save(SupercellSWF& swf, const std::filesystem::path& filePath, SWFStream::Signature signature);
+	inline void save_internal(SupercellSWF& swf, bool is_texture, bool is_lowres);
+	inline bool _load_tags(SupercellSWF& swf);
+	inline void _save_tags(SupercellSWF& swf);
+	inline void _save_textures(SupercellSWF& swf, bool has_data, bool is_lowres);
 
-	SupercellSWF load(const std::filesystem::path& filePath) {
+	inline SupercellSWF load(const std::filesystem::path& filePath) {
 		SupercellSWF swf;
 		swf.current_file = filePath;
 
@@ -60,7 +60,7 @@ namespace sc {
 		return swf;
 	}
 
-	bool load_internal(SupercellSWF& swf, const std::filesystem::path& filePath, bool is_texture) {
+	inline bool load_internal(SupercellSWF& swf, const std::filesystem::path& filePath, bool is_texture) {
 		swf.stream.open_file(filePath);
 
 		// Reading .sc file
@@ -101,7 +101,7 @@ namespace sc {
 		return _load_tags(swf);
 	}
 
-	void save(SupercellSWF& swf, const std::filesystem::path& filePath, SWFStream::Signature signature) {
+	inline void save(SupercellSWF& swf, const std::filesystem::path& filePath, SWFStream::Signature signature) {
 		swf.current_file = filePath;
 		if (swf.matrixBanks.size() == 0) {
 			swf.matrixBanks.resize(1);
@@ -129,7 +129,7 @@ namespace sc {
 		}
 	}
 
-	void save_internal(SupercellSWF& swf, bool is_texture, bool is_lowres) {
+	inline void save_internal(SupercellSWF& swf, bool is_texture, bool is_lowres) {
 		if (!is_texture)
 		{
 			swf.stream.write_unsigned_short(swf.shapes.size());
@@ -166,7 +166,7 @@ namespace sc {
 		swf.stream.write_tag_flag(TAG_END);
 	}
 
-	bool _load_tags(SupercellSWF& swf) {
+	inline bool _load_tags(SupercellSWF& swf) {
 		bool has_external_texture = false;
 
 		uint16_t shapes_loaded = 0;
@@ -310,7 +310,7 @@ namespace sc {
 		return has_external_texture;
 	}
 
-	void _save_tags(SupercellSWF& swf) {
+	inline void _save_tags(SupercellSWF& swf) {
 		if (swf.use_external_texture) {
 			if (
 				swf.multi_resolution_suffix.compare(MULTIRES_DEFAULT_SUFFIX) != 0 ||
@@ -394,7 +394,7 @@ namespace sc {
 		}
 	}
 
-	void _save_textures(SupercellSWF& swf, bool has_data, bool is_lowres) {
+	inline void _save_textures(SupercellSWF& swf, bool has_data, bool is_lowres) {
 		for (uint16_t i = 0; swf.textures.size() > i; i++)
 		{
 			SWFTexture& texture = swf.textures[i];
