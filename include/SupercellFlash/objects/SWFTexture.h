@@ -49,8 +49,32 @@ namespace sc
 		};
 
 	public:
-		static const SWFVector<PixelFormat, uint8_t> pixel_format_table;
-		static const SWFVector<Image::PixelDepth, uint8_t> pixel_depth_table;
+		 static inline const SWFVector<PixelFormat, uint8_t> pixel_format_table = {
+            SWFTexture::PixelFormat::RGBA8,
+            SWFTexture::PixelFormat::RGBA4,
+            SWFTexture::PixelFormat::RGB5_A1,
+            SWFTexture::PixelFormat::RGB565,
+            SWFTexture::PixelFormat::LUMINANCE8_ALPHA8,
+            SWFTexture::PixelFormat::RGBA8,
+            SWFTexture::PixelFormat::RGBA8,
+            SWFTexture::PixelFormat::RGBA8,
+            SWFTexture::PixelFormat::RGBA8,
+            SWFTexture::PixelFormat::LUMINANCE8
+        };
+
+        static inline const SWFVector<Image::PixelDepth, uint8_t> pixel_depth_table = {
+            Image::PixelDepth::RGBA8,  // 0
+            Image::PixelDepth::RGBA8,
+            Image::PixelDepth::RGBA4,  // 2
+            Image::PixelDepth::RGB5_A1, // 3
+            Image::PixelDepth::RGB565,  // 4
+            Image::PixelDepth::RGBA8,
+            Image::PixelDepth::LUMINANCE8_ALPHA8, // 6
+            Image::PixelDepth::RGBA8,
+            Image::PixelDepth::RGBA8,
+            Image::PixelDepth::RGBA8,
+            Image::PixelDepth::LUMINANCE8 // 10
+        };
 
 	public:
 		TextureEncoding encoding() {
@@ -487,32 +511,5 @@ namespace sc
 
 			return tag;
 		}
-	};
-
-	const SWFVector<SWFTexture::PixelFormat, uint8_t> SWFTexture::pixel_format_table = {
-		SWFTexture::PixelFormat::RGBA8,
-		SWFTexture::PixelFormat::RGBA4,
-		SWFTexture::PixelFormat::RGB5_A1,
-		SWFTexture::PixelFormat::RGB565,
-		SWFTexture::PixelFormat::LUMINANCE8_ALPHA8,
-		SWFTexture::PixelFormat::RGBA8,
-		SWFTexture::PixelFormat::RGBA8,
-		SWFTexture::PixelFormat::RGBA8,
-		SWFTexture::PixelFormat::RGBA8,
-		SWFTexture::PixelFormat::LUMINANCE8
-	};
-
-	const SWFVector<Image::PixelDepth, uint8_t> SWFTexture::pixel_depth_table = {
-		Image::PixelDepth::RGBA8,	// 0
-		Image::PixelDepth::RGBA8,
-		Image::PixelDepth::RGBA4,	// 2
-		Image::PixelDepth::RGB5_A1, // 3
-		Image::PixelDepth::RGB565,	// 4
-		Image::PixelDepth::RGBA8,
-		Image::PixelDepth::LUMINANCE8_ALPHA8, // 6
-		Image::PixelDepth::RGBA8,
-		Image::PixelDepth::RGBA8,
-		Image::PixelDepth::RGBA8,
-		Image::PixelDepth::LUMINANCE8 // 10
 	};
 }
