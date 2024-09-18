@@ -305,7 +305,7 @@ namespace sc
 
 	void SWFTexture::load_from_image(RawImage& image)
 	{
-		SWFTexture::PixelFormat image_format= default;
+		SWFTexture::PixelFormat image_format = {};
 		Ref<Stream> image_data = CreateRef<MemoryStream>(image.data(), image.data_length());
 
 		switch (image.depth())
