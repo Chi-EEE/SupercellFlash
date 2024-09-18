@@ -6,7 +6,7 @@
 namespace sc {
 	struct ExportName
 	{
-		ExportName() {};
+		ExportName() = default;
 		virtual ~ExportName() = default;
 
 		SWFString name;

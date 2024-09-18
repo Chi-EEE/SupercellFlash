@@ -12,7 +12,7 @@ namespace sc
 	class Shape : public DisplayObject
 	{
 	public:
-		Shape() {};
+		Shape() = default;
 		virtual ~Shape() = default;
 
 	public:

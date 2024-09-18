@@ -16,7 +16,7 @@ namespace sc
 	class SWFFile : public SupercellSWF
 	{
 	public:
-		SWFFile() {};
+		SWFFile() = default;
 
 		// If the file is a real texture, only the texture tags are loaded, otherwise the entire file is loaded.
 		SWFFile(std::filesystem::path path)

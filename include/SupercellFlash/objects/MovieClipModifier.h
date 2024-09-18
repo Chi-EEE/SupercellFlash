@@ -12,8 +12,8 @@ namespace sc
 	class MovieClipModifier : public DisplayObject
 	{
 	public:
-		MovieClipModifier() {};
-		virtual ~MovieClipModifier() = default;
+		MovieClipModifier() = default;
+		~MovieClipModifier() override = default;
 
 	public:
 		enum class Type : uint8_t
@@ -27,8 +27,8 @@ namespace sc
 		Type type = Type::Mask;
 
 	public:
-		virtual void load(SupercellSWF& swf, uint8_t tag);
-		virtual void save(SupercellSWF& swf) const;
+		void load(SupercellSWF& swf, uint8_t tag) override;
+		void save(SupercellSWF& swf) const override;
 
 		virtual uint8_t tag(SupercellSWF& swf) const;
 

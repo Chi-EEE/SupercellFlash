@@ -10,16 +10,16 @@ namespace sc
 	struct MovieClipFrame
 	{
 	public:
-		MovieClipFrame() {};
-		virtual ~MovieClipFrame() = default;
+		MovieClipFrame() = default;
+		~MovieClipFrame() = default;
 
 	public:
 		uint16_t elements_count = 0;
 		SWFString label;
 
 	public:
-		virtual void load(SupercellSWF& swf);
-		virtual void save(SupercellSWF& swf) const;
+		void load(SupercellSWF& swf);
+		void save(SupercellSWF& swf) const;
 
 		virtual uint8_t tag(SupercellSWF& swf) const;
 	};

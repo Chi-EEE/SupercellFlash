@@ -12,8 +12,8 @@ namespace sc
 	class SWFStream : public BufferStream
 	{
 	public:
-		SWFStream() {};
-		SWFStream(const SWFStream&) {};
+		SWFStream() = default;
+		SWFStream(const SWFStream&) = default;
 		SWFStream& operator=(const SWFStream&) { return *this; };
 
 	public:

@@ -11,7 +11,7 @@ namespace sc
 	class SWFString
 	{
 	public:
-		SWFString() {};
+		SWFString() = default;
 
 		SWFString(const char* data)
 		{

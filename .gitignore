@@ -1,7 +1,9 @@
 build
 android_build
 *.sln
-.*
+.xmake
+.vscode
 *.vcxproj*
 Makefile
 *.make
+vsxmake*

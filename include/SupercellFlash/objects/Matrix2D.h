@@ -10,12 +10,12 @@ namespace sc
 	struct Matrix2D : public Matrix2x3<float>
 	{
 	public:
-		Matrix2D() {};
+		Matrix2D() = default;
 		virtual ~Matrix2D() = default;
 
 	public:
-		virtual void load(SupercellSWF& swf, uint8_t tag);
-		virtual void save(SupercellSWF& swf) const;
+		void load(SupercellSWF& swf, uint8_t tag);
+		void save(SupercellSWF& swf) const;
 
 		virtual uint8_t tag(SupercellSWF& swf) const;
 

@@ -11,7 +11,7 @@ namespace sc
 	class TextField : public DisplayObject
 	{
 	public:
-		TextField() {};
+		TextField() = default;
 		virtual ~TextField() = default;
 
 	public:
@@ -60,12 +60,12 @@ namespace sc
 		SWFString typography_file = "";
 
 	public:
-		virtual void load(SupercellSWF& swf, uint8_t tag);
-		virtual void save(SupercellSWF& swf) const;
-		virtual void save_data(SupercellSWF& swf, uint8_t tag) const;
+		void load(SupercellSWF& swf, uint8_t tag) override;
+		void save(SupercellSWF& swf) const override;
+		void save_data(SupercellSWF& swf, uint8_t tag) const;
 
-		virtual uint8_t tag(SupercellSWF& swf) const;
+		uint8_t tag(SupercellSWF& swf) const;
 
-		virtual bool is_textfield() const;
+		bool is_textfield() const override;
 	};
 }

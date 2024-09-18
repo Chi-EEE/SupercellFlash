@@ -10,7 +10,7 @@ namespace sc
 	struct ColorTransform
 	{
 	public:
-		ColorTransform() {};
+		ColorTransform() = default;
 		virtual ~ColorTransform() = default;
 
 	public:
@@ -20,8 +20,8 @@ namespace sc
 		Color<uint8_t> multiply{ 255, 255, 255 };
 
 	public:
-		virtual void load(SupercellSWF& swf);
-		virtual void save(SupercellSWF& swf) const;
+		void load(SupercellSWF& swf);
+		void save(SupercellSWF& swf) const;
 
 		virtual uint8_t tag(SupercellSWF& swf) const;
 

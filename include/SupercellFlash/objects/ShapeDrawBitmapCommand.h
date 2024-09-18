@@ -20,17 +20,17 @@ namespace sc
 	class ShapeDrawBitmapCommand
 	{
 	public:
-		ShapeDrawBitmapCommand() {};
-		virtual ~ShapeDrawBitmapCommand() = default;
+		ShapeDrawBitmapCommand() = default;
+		~ShapeDrawBitmapCommand() = default;
 
 	public:
 		uint8_t texture_index = 0;
 		SWFVector<ShapeDrawBitmapCommandVertex> vertices;
 
 	public:
-		virtual void load(SupercellSWF& swf, uint8_t tag);
-		virtual void save(SupercellSWF& swf) const;
+		void load(SupercellSWF& swf, uint8_t tag);
+		void save(SupercellSWF& swf) const;
 
-		virtual uint8_t tag(SupercellSWF& swf) const;
+		uint8_t tag(SupercellSWF& swf) const;
 	};
 }
