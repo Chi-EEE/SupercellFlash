@@ -49,7 +49,7 @@ namespace sc
 		};
 
 	public:
-		 static inline const SWFVector<PixelFormat, uint8_t> pixel_format_table = {
+		 inline const SWFVector<PixelFormat, uint8_t> pixel_format_table = {
             SWFTexture::PixelFormat::RGBA8,
             SWFTexture::PixelFormat::RGBA4,
             SWFTexture::PixelFormat::RGB5_A1,
@@ -62,7 +62,7 @@ namespace sc
             SWFTexture::PixelFormat::LUMINANCE8
         };
 
-        static inline const SWFVector<Image::PixelDepth, uint8_t> pixel_depth_table = {
+        inline const SWFVector<Image::PixelDepth, uint8_t> pixel_depth_table = {
             Image::PixelDepth::RGBA8,  // 0
             Image::PixelDepth::RGBA8,
             Image::PixelDepth::RGBA4,  // 2

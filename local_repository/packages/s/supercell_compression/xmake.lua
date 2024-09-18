@@ -4,7 +4,8 @@ package("supercell_compression")
     set_license("MIT")
 
     add_urls("https://github.com/Chi-EEE/SupercellCompression.git")
-    add_versions("2024.06.21", "56b1d7fdde337c35f2674f960d7c975b13ff6879")
+    add_versions("2024.09.18", "6c670d6515bc95e51e56c18e16ca37f01f903976")
+    add_versions("2024.06.21", "9bea65e9308f3694788001e59209325a1cec7982")
 
     add_deps("lzham_codec", "lzma", "zstd")
     add_deps("astc-encoder", {configs = {sse41 = true, native = true, cli = false}})
